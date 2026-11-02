@@ -139,20 +139,23 @@ Unused XIAO pins are marked as no-connect in the schematic, and VBUS (5 V) is no
 - The remaining DRC warnings are silkscreen-related (silkscreen overlapping pads or touching the board edge). They do not affect the copper or whether the board works.
 
 ## Firmware
-The board runs on CircuitPython.
+## Firmware
 
-Required Libraries
-Ensure the following Adafruit CircuitPython driver libraries are copied to your board's lib folder:
+The board runs on **CircuitPython**. The complete source code is available in [`code.py`](./code.py).
 
-adafruit_displayio_ssd1306
+### Required Libraries
+Before running the code, ensure the following Adafruit CircuitPython driver libraries are copied to your board's `/lib` folder:
+* `adafruit_displayio_ssd1306`
+* `adafruit_display_text`
+* `adafruit_bme280`
+* `i2cdisplaybus`
 
-adafruit_display_text
-
-adafruit_bme280
-
-i2cdisplaybus
-
-Main Script (code.py)
+### Implementation Overview
+The firmware script ([`code.py`](./code.py)) performs the following functions:
+* **Display Initialization:** Sets up the 0.96" SSD1306 OLED over I2C at address `0x3C`.
+* **Sensor Reading:** Initializes the BME280 sensor (checking address `0x76` with fallback to `0x77`) to read temperature, humidity, and atmospheric pressure.
+* **Page Navigation:** Uses the rotary encoder (`D0`, `D1`) to toggle between the **LIVE** readings page and the **MIN / MAX** tracking page.
+* **Min/Max Memory & Reset:** Automatically tracks minimum and maximum recorded values; pressing the encoder push switch (`D2`) resets the stored min/max bounds to current values.
 
 ## Building the board
 
