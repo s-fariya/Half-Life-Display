@@ -63,7 +63,7 @@ Front copper routing with a GND fill on the back layer.
 
 ### Schematic
 
-![Schematic](Schematic.png)
+![Schematic](Schematics.png)
 
 ### 3D view
 
